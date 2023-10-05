@@ -1,0 +1,37 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "New";
+    SelectList categoriesOptions = new SelectList(ViewBag.categories, "Id", "CategoryName");
+
+}
+
+<h1>Add New Product</h1>
+<form method="post" asp-action="New" asp-controller="Product">
+
+    <div class="form-group">
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" class="form-control">
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductImage"></label>
+        <input asp-for="ProductImage" class="form-control">
+        <span asp-validation-for="ProductImage" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control">
+        <span asp-validation-for="Price" class="text-danger"></span>
+
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <select asp-for="CategoryId" asp-items="categoriesOptions" class="form-control">
+        </select>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

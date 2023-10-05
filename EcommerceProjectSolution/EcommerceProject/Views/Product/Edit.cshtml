@@ -1,0 +1,49 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Product</h1>
+
+<form method="post" asp-action="Edit" asp-controller="Product" enctype="multipart/form-data">
+    @* @Html.AntiForgeryToken() *@
+    <input name="Id" value="@Model.Id" hidden />
+    <div class="form-group">
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" class="form-control">
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductImage"></label>
+        <input asp-for="ProductImage" class="form-control">
+        <span asp-validation-for="ProductImage" class="text-danger"></span>
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" class="form-control">
+        <span asp-validation-for="Price" class="text-danger"></span>
+
+    </div>
+    
+
+        <div class="form-group">
+            <label>CategoryID</label>
+            <select name="CategoryId" class="form-control">
+                @foreach (Category c in ViewBag.categories)
+                {
+                    @if (Model.CategoryId == c.Id)
+                    {
+                        <option value="@c.Id" selected>@c.CategoryName</option>
+                    }
+                    else
+                    {
+                        <option value="@c.Id">@c.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
